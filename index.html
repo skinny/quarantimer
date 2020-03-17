@@ -28,21 +28,25 @@
       <v-app>
         <v-content class="bg">
           <v-container fill-height>
-            <v-row justify="center">
-              <h1>A new beginning {{ t0.startOf("day").fromNow() }}</h1>
-              <v-col :cols="8" align-self="center">
-                <v-progress-linear
-                  height="40"
-                  color="warning"
-                  :value="percentage * 100.0"
-                ></v-progress-linear
-              ></v-col>
-              <v-col :cols="4" align-self="center"
-                >{{ (percentage * 100.0).toFixed(5) }}%
+            <v-row justify="center" self-align="center">
+              <v-col cols="12" >
+                <h1>A new beginning {{ t0.startOf("day").fromNow() }}</h1>
+                <v-row>
+                  <v-col :cols="8" align-self="center">
+                    <v-progress-linear
+                      height="40"
+                      color="warning"
+                      :value="percentage * 100.0"
+                    ></v-progress-linear
+                  ></v-col>
+                  <v-col :cols="4" align-self="center"
+                    >{{ (percentage * 100.0).toFixed(5) }}%
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col>{{ secondsRemaining }} seconds</v-col>
+                </v-row>
               </v-col>
-            </v-row>
-            <v-row>
-              <v-col>{{ secondsRemaining }} seconds</v-col>
             </v-row>
           </v-container>
         </v-content>

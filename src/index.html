@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <style>
+      .bg {
+        background-image: url("img/bg.jpg");
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <v-app>
+        <v-content class="bg">
+          <v-container fill-height>
+            <v-row justify="center">
+              <h1>A new beginning {{ t0.startOf("day").fromNow() }}</h1>
+              <v-col :cols="8" align-self="center">
+                <v-progress-linear
+                  height="40"
+                  color="warning"
+                  :value="percentage * 100.0"
+                ></v-progress-linear
+              ></v-col>
+              <v-col :cols="4" align-self="center"
+                >{{ (percentage * 100.0).toFixed(5) }}%
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>{{ secondsRemaining }} seconds</v-col>
+            </v-row>
+          </v-container>
+        </v-content>
+      </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue-moment@4.1.0/dist/vue-moment.min.js"></script> -->
+    <script>
+      var start = moment("2020-03-16T02:00:00Z");
+      var target = moment("2020-04-06T02:00:00Z");
+      var totalSeconds = moment.duration(target.diff(start)).asSeconds();
+
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify({
+          theme: {
+            dark: true
+          }
+        }),
+        data() {
+          return {
+            t0: target,
+            totalSeconds: totalSeconds,
+            secondsRemaining: totalSeconds
+          };
+        },
+        computed: {
+          percentage() {
+            return (totalSeconds - this.secondsRemaining) / totalSeconds;
+          }
+        },
+
+        created() {
+          setInterval(() => {
+            this.secondsRemaining = moment
+              .duration(target.diff(moment()))
+              .asSeconds()
+              .toFixed();
+          }, 1000);
+        }
+      });
+    </script>
+  </body>
+</html>

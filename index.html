@@ -61,7 +61,7 @@
       .progress__value {
         stroke-dasharray: 678.584;
         stroke-dashoffset: 678.584;
-        transition: stroke-dashoffset 2s ;
+        transition: stroke-dashoffset 2s;
       }
 
       /* @keyframes progress {
@@ -117,7 +117,9 @@
         <div class="text">
           <h1>{{ daysRemaining }}</h1>
           <p>days left in quarantine</p>
-          <p class="small" v-if="percentage">{{ (percentage * 100.0).toFixed(4) }}%</p>
+          <p class="small" v-if="percentage">
+            {{ (percentage * 100.0).toFixed(4) }}%
+          </p>
         </div>
       </div>
       <div class="loader">

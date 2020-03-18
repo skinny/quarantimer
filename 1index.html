@@ -1,0 +1,127 @@
+<html>
+
+<head>
+    <title>Quarantine Timer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:100,400,700&display=swap" rel="stylesheet">
+    <style>
+        * { 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            font-family: 'Roboto Mono', monospace;
+            color: white;
+            font-weight: 400;
+            background: #000;
+        }
+        
+        #video {
+            background: #000;
+            position: fixed;
+            top: 0; 
+            right: 0; 
+            bottom: 0; 
+            left: 0;
+            z-index: -99;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+        }
+        
+        .loader {
+            position: absolute;
+	        top:0;
+	        bottom: 0;
+	        left: 0;
+	        right: 0;
+            margin: auto;
+            z-index: -98;
+            width: 240px;
+            height: 240px;
+        }
+
+        .progress {
+            transform: rotate(-90deg);
+        }
+
+        .progress__value {
+            stroke-dasharray: 678.584;
+            stroke-dashoffset: 678.584;
+            animation: progress 5s infinite alternate;
+        }
+
+        @keyframes progress {
+            from {
+                stroke-dashoffset: 678.584;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        .content {
+            position: absolute;
+	        top:0;
+	        bottom: 0;
+	        left: 0;
+	        right: 0;
+            margin: auto;
+            width: 240px;
+            height: 300px;
+        }
+                
+        .text {
+            text-align: center;
+            padding: 85px 50px 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .text h1 {
+            font-size: 60px;
+            font-weight: 100;
+            line-height: 60px;
+            margin: 0;
+        }
+        
+        .text p {
+            font-size: 16px;
+            font-weight: 100;
+            line-height: 20px;
+        }
+        
+        .text p.small {
+            color: #EBF2FA;
+            font-size: 14px;
+            padding-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="text">
+            <h1>15</h1>
+            <p>days left in quarantine</p>
+            <p class="small">54.21649%</p>
+        </div>
+    </div>
+    <div class="loader">
+        <svg class="progress" width="240" height="240" viewBox="0 0 240 240">
+            <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#EBF2FA" />
+                  <stop offset="100%" stop-color="#6C77B9" />
+                </linearGradient>
+            </defs>
+            <circle cx="120" cy="120" r="108" fill="none" stroke="#ffffff" stroke-opacity="0.1" stroke-width="5" />
+            <circle class="progress__value" cx="120" cy="120" r="108" fill="none" stroke="url(#gradient)" stroke-width="5" />
+        </svg>
+    </div>
+    <video autoplay muted loop id="video">
+        <source src="Earth.mp4" type="video/mp4">
+    </video>
+</body>
+
+</html>
